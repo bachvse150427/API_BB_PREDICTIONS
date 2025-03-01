@@ -5,3 +5,8 @@ ApiBbPredictions.egg-info/SOURCES.txt
 ApiBbPredictions.egg-info/dependency_links.txt
 ApiBbPredictions.egg-info/requires.txt
 ApiBbPredictions.egg-info/top_level.txt
+ApiBbStock/__init__.py
+ApiBbStock/exception/__init__.py
+ApiBbStock/exception/exception.py
+ApiBbStock/logging/__init__.py
+ApiBbStock/logging/logger.py

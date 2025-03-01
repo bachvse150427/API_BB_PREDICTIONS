@@ -2,6 +2,8 @@
 // in API_PREDICTIONS
 conda create -p env python==3.12
 
+conda activate /home/alan/Desktop/api_stock_predictions/env
+
 git init
 pip install -e .
 
