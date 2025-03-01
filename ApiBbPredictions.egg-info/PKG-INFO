@@ -8,7 +8,9 @@ Requires-Dist: pandas
 Requires-Dist: numpy
 Requires-Dist: pymongo
 Requires-Dist: certifi
-Requires-Dist: dnspython
+Requires-Dist: pymongo[srv]==3.11
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
 Dynamic: author
 Dynamic: author-email
 Dynamic: requires-dist

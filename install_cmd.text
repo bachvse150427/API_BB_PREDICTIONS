@@ -9,7 +9,61 @@ pip install -e .
 
 python setup.py install
 
+//Mongo
 
+bachvse150427
+
+UgRms4ZBDXFfF6Wy
+
+//0/
+http://127.0.0.1:8000/docs#/
+
+
+//1/
+http://127.0.0.1:8000/data-info
+
+{"file_name":"mongodb_data_20250301_184346.csv","total_records":26148,"columns":["Ticker","Model","Month-Year","Index","Actual","Prediction","Prob_Class_0","Prob_Class_1","Correct"],"last_updated":"2025-03-01 18:43:48"}
+
+//2/
+http://127.0.0.1:8000/test
+
+//3/
+http://localhost:8000/available-filters
+curl http://localhost:8000/available-filters
+
+{
+    "tickers": ["VNM", "VIC", "FPT", ...],
+    "models": ["RandomForest", "XGBoost", ...],
+    "month_years": ["2024-01", "2024-02", "2024-03", ...]
+}
+
+
+//4/
+http://localhost:8000/stock-prediction?ticker=AAA&model=logistic_regression&month_year=2024-12-01
+
+curl "http://localhost:8000/stock-prediction?ticker=AAA&model=logistic_regression&month_year=2024-12-01"
+
+{
+    "status": "success",
+    "timestamp":"2025-03-01 19:09:03",
+    "query_params": {
+        "ticker": "AAA",
+        "model": "logistic_regression",
+        "month_year": "2024-12-01"
+    },
+    "total_records": 1,
+    "data": [
+            {
+                "Ticker":"AAA",
+                "Model":"logistic_regression",
+                "Month-Year":"2024-12-01",
+                "Index":17,"Actual":0,
+                "Prediction":0,
+                "Prob_Class_0":0.5009356945,
+                "Prob_Class_1":0.4990643055,
+                "Correct":1}
+    ]
+}
 
 
 

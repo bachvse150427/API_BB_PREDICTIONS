@@ -1,9 +1,15 @@
 env
 .env
+install_cmd.text
 
-data
+Local_Data
+Get_Data
 dist
 build
+
+
+
+
 
 
 

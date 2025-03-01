@@ -3,4 +3,6 @@ pandas
 numpy
 pymongo
 certifi
-dnspython
+pymongo[srv]==3.11
+fastapi
+uvicorn
