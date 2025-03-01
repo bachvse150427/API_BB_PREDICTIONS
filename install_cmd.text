@@ -1,0 +1,16 @@
+
+// in API_PREDICTIONS
+conda create -p env python==3.12
+
+git init
+pip install -e .
+
+python setup.py install
+
+
+
+
+
+
+
+
