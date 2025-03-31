@@ -1,28 +1,10 @@
-FROM python:3.12-slim
-
+FROM python:3.10-slim-buster
 WORKDIR /app
+COPY . /app
 
-# Copy requirements first for better caching
-COPY requirements.txt .
+RUN apt update -y && apt install awscli -y
 
-# Install dependencies and AWS CLI
-RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends awscli && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    pip install --no-cache-dir -r requirements.txt
-
-# Create the data directory
-RUN mkdir -p Get_Data
-
-# Copy the rest of the application
-COPY . .
-
-# Install the application
-RUN pip install -e .
-
-# Expose the port that the app runs on
-EXPOSE 8000
+RUN apt-get update && pip install -r requirements.txt
 
 # Set the entrypoint to run our main.py script
 CMD ["python", "main.py"] 
