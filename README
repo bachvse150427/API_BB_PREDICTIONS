@@ -1,0 +1,8 @@
+conda create  -p venv python==3.12
+
+conda activate D:\CAP_111\CAP_BB\API_PREDICTIONS\venv
+
+python setup.py install
+
+python API.py
+

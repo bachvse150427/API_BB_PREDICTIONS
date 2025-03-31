@@ -1,11 +1,12 @@
-env
-.env
+venv
+.venv
 install_cmd.text
 
 Local_Data
 Get_Data
 dist
 build
+
 
 
 

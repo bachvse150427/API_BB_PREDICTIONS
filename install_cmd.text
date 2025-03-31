@@ -15,54 +15,98 @@ bachvse150427
 
 UgRms4ZBDXFfF6Wy
 
-//0/
-http://127.0.0.1:8000/docs#/
 
+
+
+
+sudo apt update && sudo apt install python3.12-venv
+
+python3 -m venv env
+
+source env/bin/activate 
+pip install setuptools
+
+python setup.py install
+
+sudo apt install tmux -y
+
+tmux new -s myserver
+
+python API.py
+
+tmux attack -t myserver
+
+
+
+//0/
+
+http://3.86.181.225:8000/docs#/
+http://3.86.181.225:8000
 
 //1/
-http://127.0.0.1:8000/data-info
 
-{"file_name":"mongodb_data_20250301_184346.csv","total_records":26148,"columns":["Ticker","Model","Month-Year","Index","Actual","Prediction","Prob_Class_0","Prob_Class_1","Correct"],"last_updated":"2025-03-01 18:43:48"}
+
+http://3.86.181.225:8000/openapi.json
+
 
 //2/
-http://127.0.0.1:8000/test
-
-//3/
-http://localhost:8000/available-filters
-curl http://localhost:8000/available-filters
+http://3.86.181.225:8000/test 
 
 {
-    "tickers": ["VNM", "VIC", "FPT", ...],
-    "models": ["RandomForest", "XGBoost", ...],
-    "month_years": ["2024-01", "2024-02", "2024-03", ...]
+  "status": "success",
+  "file": "/home/ubuntu/Get_Data/mongodb_data_20250301_193959.csv",
+  "rows": 26148,
+  "columns": [
+    "Ticker",
+    "Model",
+    "Month-Year",
+    "Index",
+    "Actual",
+    "Prediction",
+    "Prob_Class_0",
+    "Prob_Class_1",
+    "Correct"
+  ]
 }
+
+//3/
+http://3.86.181.225:8000/available-filters
+curl http://3.86.181.225:8000/available-filters
+
+{"tickers":["AAA","AAM","ABR","ABT","ACB","ACC","ACL","ADP","ADS","AGM","AGR","ANV","APC","APG","ASM","ASP","AST","BBC","BCE","BCG","BCM","BFC","BHN","BIC","BID","BMC","BMI","BMP","BRC","BSI","BTP","BTT","BVH","BWE","C32","C47","CCI","CCL","CDC","CHP","CIG","CII","CLC","CLL","CLW","CMG","CMV","CMX","CNG","COM","CRC","CRE","CSM","CSV","CTD","CTF","CTG","CTI","CTR","CTS","CVT","D2D","DAH","DAT","DBC","DBD","DBT","DC4","DCL","DCM","DGC","DGW","DHA","DHC","DHG","DHM","DIG","DLG","DMC","DPG","DPM","DPR","DQC","DRC","DRL","DSN","DTA","DTL","DTT","DVP","DXG","DXV","E1VFVN30","EIB","ELC","EVE","EVF","EVG","FCM","FCN","FDC","FIR","FIT","FMC","FPT","FRT","FTS","FUCVREIT","FUESSV50","FUESSVFL","GAS","GDT","GEG","GEX","GIL","GMC","GMD","GSP","GTA","GVR","HAG","HAH","HAP","HAR","HAS","HAX","HBC","HCD","HCM","HDB","HDC","HDG","HHP","HHS","HHV","HID","HII","HMC","HNG","HPG","HPX","HQC","HRC","HSG","HSL","HT1","HTI","HTL","HTN","HTV","HU1","HUB","HVH","HVN","HVX","IDI","IJC","ILB","IMP","ITC","ITD","JVC","KBC","KDC","KDH","KHP","KMR","KOS","KPF","KSB","L10","LAF","LBM","LCG","LDG","LGC","LGL","LHG","LIX","LM8","LPB","LSS","MBB","MCP","MDG","MHC","MIG","MSH","MSN","MWG","NAF","NAV","NBB","NCT","NHA","NHH","NHT","NKG","NLG","NNC","NSC","NT2","NTL","NVL","NVT","OGC","OPC","ORS","PAC","PAN","PC1","PDN","PDR","PET","PGC","PGD","PGI","PGV","PHC","PHR","PIT","PJT","PLP","PLX","PMG","PNC","PNJ","POM","POW","PPC","PTB","PTC","PTL","PVD","PVP","PVT","QBS","QCG","RAL","RDP","REE","S4A","SAB","SAM","SAV","SBA","SBT","SBV","SC5","SCD","SCR","SCS","SFC","SFG","SFI","SGN","SGR","SGT","SHA","SHB","SHI","SHP","SJD","SJS","SKG","SMA","SMB","SMC","SPM","SRC","SRF","SSC","SSI","ST8","STB","STG","STK","SVC","SVI","SVT","SZC","SZL","TBC","TCB","TCD","TCH","TCL","TCM","TCO","TCR","TCT","TDC","TDG","TDH","TDM","TDP","TDW","TEG","THG","TIP","TIX","TLD","TLG","TLH","TMP","TMS","TMT","TN1","TNC","TNI","TNT","TPB","TPC","TRA","TRC","TSC","TTE","TTF","TV2","TVB","TVS","TVT","TYA","UIC","VAF","VCA","VCB","VCF","VCG","VCI","VDP","VDS","VFG","VGC","VHC","VHM","VIB","VIC","VID","VIP","VIX","VJC","VMD","VND","VNE","VNG","VNL","VNM","VNS","VOS","VPB","VPD","VPG","VPH","VPI","VPS","VRC","VRE","VSC","VSH","VSI","VTB","VTO","YBM","YEG"],"models":["logistic_regression","lstm","random_forest","svm"],"month_years":["2023-07-01","2023-08-01","2023-09-01","2023-10-01","2023-11-01","2023-12-01","2024-01-01","2024-02-01","2024-03-01","2024-04-01","2024-05-01","2024-06-01","2024-07-01","2024-08-01","2024-09-01","2024-10-01","2024-11-01","2024-12-01"]}
 
 
 //4/
-http://localhost:8000/stock-prediction?ticker=AAA&model=logistic_regression&month_year=2024-12-01
+http://3.86.181.225:8000/stock-prediction?ticker=AAA&model=logistic_regression&month_year=2024-12-01
 
-curl "http://localhost:8000/stock-prediction?ticker=AAA&model=logistic_regression&month_year=2024-12-01"
+curl "http://3.86.181.225:8000//stock-prediction?ticker=AAA&model=logistic_regression&month_year=2024-12-01"
 
 {
-    "status": "success",
-    "timestamp":"2025-03-01 19:09:03",
-    "query_params": {
-        "ticker": "AAA",
-        "model": "logistic_regression",
-        "month_year": "2024-12-01"
-    },
-    "total_records": 1,
-    "data": [
-            {
-                "Ticker":"AAA",
-                "Model":"logistic_regression",
-                "Month-Year":"2024-12-01",
-                "Index":17,"Actual":0,
-                "Prediction":0,
-                "Prob_Class_0":0.5009356945,
-                "Prob_Class_1":0.4990643055,
-                "Correct":1}
-    ]
+  "status": "success",
+  "timestamp": "2025-03-02 15:48:56",
+  "query_params": {
+    "ticker": "AAA",
+    "model": "logistic_regression",
+    "month_year": "2024-12-01"
+  },
+  "statistics": {
+    "total_predictions": 1,
+    "correct_predictions": 1,
+    "accuracy": 100
+  },
+  "data": [
+    {
+      "Ticker": "AAA",
+      "Model": "logistic_regression",
+      "Month-Year": "2024-12-01",
+      "Index": 17,
+      "Actual": 0,
+      "Prediction": 0,
+      "Prob_Class_0": 0.5009356945,
+      "Prob_Class_1": 0.4990643055,
+      "Correct": 1
+    }
+  ]
 }
 
 

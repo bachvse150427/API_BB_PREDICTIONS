@@ -1,4 +1,4 @@
-README.md
+README
 setup.py
 ApiBbPredictions.egg-info/PKG-INFO
 ApiBbPredictions.egg-info/SOURCES.txt

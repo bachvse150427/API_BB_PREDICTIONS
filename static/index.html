@@ -141,7 +141,7 @@
 
         async function loadFilters() {
             try {
-                const response = await fetch('http://localhost:8000/available-filters');
+                const response = await fetch('/available-filters');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -191,7 +191,7 @@
 
             try {
                 const response = await fetch(
-                    `http://localhost:8000/stock-prediction?ticker=${ticker}&model=${model}&month_year=${monthYear}`
+                    `/stock-prediction?ticker=${ticker}&model=${model}&month_year=${monthYear}`
                 );
                 
                 if (!response.ok) {

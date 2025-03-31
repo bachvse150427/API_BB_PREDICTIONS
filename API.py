@@ -3,6 +3,8 @@ import glob
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 import pandas as pd
 from datetime import datetime
 from typing import List, Dict
@@ -28,6 +30,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Mount thư mục static
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 class StockData(BaseModel):
     # Định nghĩa model dữ liệu trả về
@@ -80,10 +85,10 @@ def get_latest_csv():
         logger.error(traceback.format_exc())  # In ra stack trace đầy đủ
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/", response_model=Dict)
-async def read_root():
-    return {"message": "Welcome to Stock Data API", "status": "running"}
-
+@app.get("/")
+async def read_index():
+    return FileResponse('static/index.html')
+##1/
 @app.get("/test")
 async def test_endpoint():
     try:
@@ -99,21 +104,6 @@ async def test_endpoint():
         logger.error(f"Error in test endpoint: {str(e)}")
         logger.error(traceback.format_exc())
         return {"status": "error", "message": str(e)}
-##1#
-@app.get("/data-info")
-def get_data_info():
-    try:
-        latest_file = get_latest_csv()
-        df = pd.read_csv(latest_file)
-        
-        return {
-            "file_name": os.path.basename(latest_file),
-            "total_records": len(df),
-            "columns": list(df.columns),
-            "last_updated": datetime.fromtimestamp(os.path.getctime(latest_file)).strftime("%Y-%m-%d %H:%M:%S")
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
 
 ##2#
 @app.get("/stock-prediction")

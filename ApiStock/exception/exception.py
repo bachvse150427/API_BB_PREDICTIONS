@@ -5,7 +5,7 @@ import os
 project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(project_root)
 
-from ApiBbStock.logging import logger
+from ApiStock.logging import logger
 
 class ApiPredictionException(Exception):
     def __init__(self,error_message,error_details:sys):

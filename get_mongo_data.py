@@ -6,8 +6,8 @@ import pymongo
 from dotenv import load_dotenv
 import certifi
 
-from ApiBbStock.exception.exception import ApiPredictionException
-from ApiBbStock.logging.logger import logging
+from ApiStock.exception.exception import ApiPredictionException
+from ApiStock.logging.logger import logging
 
 load_dotenv()
 MONGO_DB_URL = os.getenv("MONGO_DB_URL")
@@ -25,7 +25,13 @@ class NetworkDataFetch:
             db = self.mongo_client[database]
             # Lấy tất cả collections bắt đầu bằng 'Net_Data_'
             collections = [coll for coll in db.list_collection_names() if coll.startswith('Net_Data_')]
+            
             # Sắp xếp theo thời gian và lấy collection mới nhất
+            if not collections:
+                print(f"No collections found starting with 'Net_Data_' in database {database}")
+                print(f"Available collections: {db.list_collection_names()}")
+                return None
+            
             latest_collection = sorted(collections, reverse=True)[0]
             return latest_collection
         except Exception as e:
@@ -50,7 +56,7 @@ class NetworkDataFetch:
             raise ApiPredictionException(e, sys)
 
 if __name__ == '__main__':
-    DATABASE = "BACHV"
+    DATABASE = "BACHV_BB_STOCKS"  # Updated to match push_mongo_data.py
     OUTPUT_DIR = "Get_Data"
     
     # Tạo thư mục output nếu chưa tồn tại
@@ -64,11 +70,20 @@ if __name__ == '__main__':
     
     # Lấy tên collection mới nhất
     latest_collection = network_fetch.get_latest_collection(DATABASE)
+    
+    if latest_collection is None:
+        print("Error: No collections found with the required prefix.")
+        sys.exit(1)
+        
     print(f"Latest collection: {latest_collection}")
     
     # Lấy dữ liệu từ MongoDB
     data = network_fetch.fetch_data_from_mongodb(DATABASE, latest_collection)
     print(f"Found {len(data)} records")
+    
+    if len(data) == 0:
+        print("Warning: No data found in the collection.")
+        sys.exit(0)
     
     # Lưu dữ liệu vào file CSV
     saved_file = network_fetch.save_to_csv(data, output_file)
