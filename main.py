@@ -6,11 +6,15 @@ from datetime import datetime
 import logging
 
 # Configure logging
+current_time = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
+log_file_path = os.path.join("logs", f"{current_time}.log")
+os.makedirs("logs", exist_ok=True)  # Ensure logs directory exists
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("app.log"),
+        logging.FileHandler(log_file_path),
         logging.StreamHandler()
     ]
 )
